@@ -67,6 +67,13 @@
     justify-content: center;
     /* border: solid black; */
   }
+
+  .save-recs { 
+    grid-area: save-recs; 
+    display: flex;
+    justify-content: center;
+    /* border: solid black; */
+  }
   
   .web-player { 
     grid-area: web-player; 

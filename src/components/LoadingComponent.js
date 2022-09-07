@@ -139,7 +139,12 @@ const LoadingComponent = () => {
 
   return (
     <>
-      <MusicComponent album={tracks} subjects={subjects} />
+      <MusicComponent
+        album={tracks}
+        subjects={subjects}
+        book={book}
+        author={author}
+      />
     </>
   );
 };
