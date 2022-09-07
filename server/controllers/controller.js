@@ -1,4 +1,4 @@
-const controller = {};
+const controllers = {};
 const token =
   'BQBm6fX3D_pQLZIC9WU9UJgpsruqTY5VBDKl9I5Aidan-wjsjqf0dRPImNYVk5O95Vh1BngLKUItuUIl73KvvS-YS6RLhvnBYBK7wllsimlRC045d_b1MAyStm6IxOPhZjyROSiEljU5ZOydNYtvAOZ4Ym2BVl8jDq_3LdYQtmR8-JI';
 
@@ -34,7 +34,7 @@ const bookToMusicAsync = async (searchString) => {
   return albumInfo;
 };
 
-controller.bookToMusic = (searchString) => {
+controllers.bookToMusic = (searchString) => {
   let resultFromBooks = '';
   console.log('Trying to get book: ', searchString);
   //const searchUrl = 'https://gutendex.com/books?search='+searchString;
@@ -95,7 +95,7 @@ controller.bookToMusic = (searchString) => {
   //return resultFromBooks;
 };
 
-controller.bookCover = (searchString) => {
+controllers.bookCover = (searchString) => {
   console.log('Trying to get book cover: ', searchString);
   const searchUrl = `https://gutendex.com/books?search=${searchString}`;
   console.log('searchUrl: ', searchUrl);
@@ -122,4 +122,4 @@ controller.bookCover = (searchString) => {
     });
 };
 
-module.exports = controller;
+module.exports = controllers;

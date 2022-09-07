@@ -1,7 +1,10 @@
 const express = require('express');
-// const controller = require('../controller/controller');
+// const controllers = require('../controllers/controller');
 const router = express.Router();
 
-// router.get('/', controller.get, (res, req) => {});
+router.get('/', (req, res) => {
+  console.log('success in router.get');
+  res.status(200).json('Success');
+});
 
-// module.exports = controller;
+module.exports = router;
