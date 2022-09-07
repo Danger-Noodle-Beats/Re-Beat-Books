@@ -16,3 +16,13 @@ width: 300px;
     display: flex;
     height: 100px;
 }
+.Rec-List-Container {
+    display: flex;
+    flex-direction: column;
+}
+.recBox {
+    height: 100px;
+    width: 80%;
+    border: black 2px solid; 
+
+}

@@ -17,7 +17,9 @@ function SearchComponent() {
   const handleAuthor = (e) => {
     setAuthor(e.target.value);
   };
-
+  const handleViewAllRecs = () => {
+    navigate('/savedRecs')
+  }
   const handleSubmit = () => {
     if (!bookName || !author) {
       alert('Please enter both fields.');
@@ -66,7 +68,8 @@ function SearchComponent() {
           className='userInput'
         />
         <br />
-        <button onClick={handleSubmit} className='submitButton'>
+        <button onClick={handleViewAllRecs} className='submitButton'>View All Saved Recs</button>
+		<button onClick={handleSubmit} className='submitButton'>
           Submit
         </button>
       </div>
