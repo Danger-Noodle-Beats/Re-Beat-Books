@@ -1,9 +1,10 @@
 const fetch = require('node-fetch');
-const controller = {};
 const env = require('../../.env');
-const Rec = require('../models/model');
+const models = require('../models/model');
 // const { locals } = require('../server');
+const { Rec } = models;
 
+const controller = {};
 
 controller.getAuthToken = async (req, res, next) => {
   console.log(env.clientID);
@@ -37,33 +38,36 @@ controller.getAuthToken = async (req, res, next) => {
   next();
 };
 
-
 controller.saveRec = async (req, res, next) => {
-  const { book, author, album } = req.body;
-  const newRec = new Rec({
-    book: book,
-    author: author,
-    artistName: album.artistName,
-    albumName: album.albumName,
-    albumArtURL: album.albumArtURL,
-    spotifyURL: album.spotifyURL,
-    albumURI: album.albumURI
-  })
+  const { book, author } = req.body;
+  const album = req.body.currentAlbum;
+  console.log(req.body);
   try {
-    await newRec.save();
-    res.locals.savedRec = newRec;
-    return next()
+    // await newRec.save();
+    Rec.create(
+      {
+        book: book,
+        author: author,
+        artistName: album.artistName,
+        albumName: album.albumName,
+        albumArtURL: album.albumArtURL,
+        spotifyURL: album.spotifyURL,
+        albumURI: album.albumURI,
+      },
+      (err, newRec) => {
+        console.log('saved Rec: ', newRec);
+        res.locals.savedRec = newRec;
+        return next();
+      }
+    );
   } catch (err) {
     return next({
       log: 'Express error handler caught error in controller.saveRec',
       status: 500,
-      message: {err: `Error occurred in saveRec, ${err}`}
-    }
-      
-    )
+      message: { err: `Error occurred in saveRec, ${err}` },
+    });
   }
 };
-
 
 controller.getAllRecs = async (req, res, next) => {
   try {
@@ -71,39 +75,31 @@ controller.getAllRecs = async (req, res, next) => {
       console.log('all saved recs', recs);
       res.locals.allRecs = recs;
       return next();
-    })
-  }
-  catch (err) {
+    });
+  } catch (err) {
     return next({
       log: 'Express error handler caught error in controller.getAllRecs',
       status: 500,
-      message: {err: `Error occurred in getAllRecs, ${err}`}
-    })
+      message: { err: `Error occurred in getAllRecs, ${err}` },
+    });
   }
-}
-
+};
 
 controller.deleteRec = async (req, res, next) => {
-  const targetRec = req.params.albumName
+  const targetRec = req.params.albumName;
   try {
-    await Rec.findOneAndDelete({ albumName: targetRec })
-    return next()
-   } catch (err) {
+    await Rec.findOneAndDelete({ albumName: targetRec });
+    return next();
+  } catch (err) {
     return next({
       log: 'Express error handler caught error in controller.deleteRecs',
       status: 500,
-      message: {err: `Error occurred in deleteRecs, ${err}`}
-    })
+      message: { err: `Error occurred in deleteRecs, ${err}` },
+    });
   }
-}
-
-
-
-
+};
 
 module.exports = controller;
-
-
 
 // const bookToMusicAsync = async (searchString) => {
 //   let resultFromBooks = '';

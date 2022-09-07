@@ -32,7 +32,7 @@ const MusicComponent = ({ book, author, album, subjects }) => {
   const handleSave = async (e) => {
     try {
       e.preventDefault();
-      const recsObj = { book, author, album };
+      const recsObj = { book, author, currentAlbum };
 
       const response = await fetch('/api/', {
         method: 'POST',
