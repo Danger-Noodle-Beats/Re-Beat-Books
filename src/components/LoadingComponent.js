@@ -19,7 +19,7 @@ const LoadingComponent = () => {
   // getting state property from useLocation
   const { state } = useLocation();
   // setting book and author from state properties
-  const { book, author } = state; //state.book
+  const { book, author, token } = state; //state.book
   // const fetchTracks = async ()=> {
   //     const response = await fetch('https://631630f233e540a6d38f0ae4.mockapi.io/api/tracks');
   //     setTracks(await response.json);
@@ -61,8 +61,8 @@ const LoadingComponent = () => {
 
   // }
   const fetchTracks = async (searchString) => {
-    const token =
-      'BQCz_TDmyFwUxPV-9r5-cFdM7ko5Gf683smTIweadKMgNg9MSHuRxUvLBSfM4ClJ60p7jifx7LVe6Xhehvtq1KYojHo_QAXZU2tbTgfU60ZTgwg1hvQ';
+    // const token =
+    //   'BQB-vygWiUKr2gBy_OJip6h6XKy4lin2odWsaRZ7-FGerg_KtNUY8dvtQc8Qo5tPmsHC01DTJp7shEUoprWGnEaSjJGuYhhBkXXj3dDN1_6S-5g2Dmo';
 
     let resultFromBooks = '';
     console.log('Trying to get book: ', searchString);
@@ -139,7 +139,12 @@ const LoadingComponent = () => {
 
   return (
     <>
-      <MusicComponent album={tracks} subjects={subjects} />
+      <MusicComponent
+        album={tracks}
+        subjects={subjects}
+        book={book}
+        author={author}
+      />
     </>
   );
 };
