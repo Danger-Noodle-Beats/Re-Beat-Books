@@ -10,6 +10,7 @@ const router = express.Router();
 //   res.status(200).json('Success');
 // });
 
+
 router.get('/authToken', controller.getAuthToken, (req, res) => {
   // console.log(res.locals.token);
   res.status(200).json(res.locals.token);
@@ -20,6 +21,7 @@ router.post('/getGutenAPI', controller.getGutenAPI, (req, res) => {
 router.post('/getSpotAPI', controller.getSpotAPI, (req, res) => {
   res.status(200).json(res.locals.albums);
 });
+
 router.post('/', controller.saveRec, (req, res) => {
   res.status(200).json(res.locals.savedRec);
 });
