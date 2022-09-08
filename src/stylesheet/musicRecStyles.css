@@ -1,9 +1,12 @@
-.container {  display: grid;
+.container {  
+  display: grid;
     grid-template-columns: 1fr 1fr 0.9fr 1.1fr;
     grid-template-rows: 0.9fr 0.7fr 1.2fr 1.2fr 1.2fr 0.6fr 0.6fr 1.6fr;
     height: 120vh;
     gap: 0px 0px;
     grid-auto-flow: row;
+    text-align: center;
+
     grid-template-areas:
       "dope-beats dope-beats dope-beats dope-beats"
       "subjects-list subjects-list subjects-list subjects-list"
@@ -109,3 +112,12 @@
   #web-player {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
+  #home-btn{
+    margin-left: 0px;
+    margin-top: 0px;
+    /* align-content: left; */
+}
+.button-containers {
+  display:flex;
+  align-content: center;
+}

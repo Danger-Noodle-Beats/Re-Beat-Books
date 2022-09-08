@@ -27,16 +27,6 @@ const SavedRecs = (props) => {
 
   console.log('all saved recs: ', allRecs);
 
-  //   const recElements = [];
-  //   const tmpRecs = allRecs;
-  //   tmpRecs.forEach((rec) => {
-  //     recElements.push(
-  //       <div>
-  //         {rec.book} by {rec.author} Album: {rec.albumName}
-  //       </div>
-  //     );
-  //   });
-
   const navigate = useNavigate();
   const handleClickHome = () => {
     navigate('/');

@@ -59,14 +59,16 @@ function SearchComponent() {
     });
   };
 
-  // useEffect(() => {
-  //   const fetchToken = async () => {
-  //     const response = await fetch("/api/authToken/");
-  //     const authToken = await response.json();
-  //     setToken(authToken);
-  //   };
-  //   fetchToken();
-  // }, []);
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      const response = await fetch('/api/authToken/');
+      const authToken = await response.json();
+      setToken(authToken);
+    };
+    fetchToken();
+  }, []);
+
 
   return (
     <div>

@@ -95,3 +95,19 @@ width: 300px;
     display: flex;
     justify-content: center;
 }
+.save-modal-container {
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 5px 20px;
+    margin: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: 'Antonio', sans-serif;
+}
