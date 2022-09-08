@@ -32,11 +32,11 @@ const SavedRecs = (props) => {
     navigate('/');
   };
 
-  const deleteRecs = (albumName) => {
+  const deleteRecs = (_id) => {
     console.log('removing album');
-    console.log(albumName);
-    axios.delete(`/api/deleteRec/${albumName}`);
-    setDeleted((deleted) => [...deleted, albumName]);
+    console.log(_id);
+    axios.delete(`/api/deleteRec/${_id}`);
+    setDeleted((deleted) => [...deleted, _id]);
   };
   const [openedRec, setOpenedRec] = useState({});
   const handleModalClick = (e, rec) => {
@@ -66,20 +66,20 @@ const SavedRecs = (props) => {
                   </div>
                 </div>
                 <div className='saved-recs-buttons'>
-                    <button
-                      id='listenBtn'
-                      className='recBtn'
-                      onClick={(e) => handleModalClick(e, rec)}
-                    >
-                      Listen
-                    </button>
-                    <button
-                      id='deleteBtn'
-                      className='recBtn'
-                      onClick={() => deleteRecs(rec.albumName)}
-                    >
-                      Delete
-                    </button>
+                  <button
+                    id='listenBtn'
+                    className='recBtn'
+                    onClick={(e) => handleModalClick(e, rec)}
+                  >
+                    Listen
+                  </button>
+                  <button
+                    id='deleteBtn'
+                    className='recBtn'
+                    onClick={() => deleteRecs(rec._id)}
+                  >
+                    Delete
+                  </button>
                 </div>
                 {showModal && (
                   <MusicPlayerModal
