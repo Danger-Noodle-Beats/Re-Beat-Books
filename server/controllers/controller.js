@@ -6,37 +6,37 @@ const { Rec } = models;
 
 const controller = {};
 
-controller.getAuthToken = async (req, res, next) => {
-  console.log(env.clientID);
-  console.log(env.clientSecret);
-  try {
-    await fetch('https://accounts.spotify.com/api/token', {
-      method: 'POST',
-      body:
-        'grant_type=client_credentials&client_id=' +
-        env.clientID +
-        '&client_secret=' +
-        env.clientSecret,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    })
-      .then((r) => r.json())
-      .then((r) => {
-        // console.log(r.access_token);
-        res.locals.token = r.access_token;
-        return next();
-      });
-  } catch (err) {
-    return next({
-      log: 'Express error handler caught error in controller.getAuthToken',
-      status: 500,
-      message: { err: `An error occurred in getAuthToken, ${err}` },
-    });
-  }
+// controller.getAuthToken = async (req, res, next) => {
+//   console.log(env.clientID);
+//   console.log(env.clientSecret);
+//   try {
+//     await fetch('https://accounts.spotify.com/api/token', {
+//       method: 'POST',
+//       body:
+//         'grant_type=client_credentials&client_id=' +
+//         env.clientID +
+//         '&client_secret=' +
+//         env.clientSecret,
+//       headers: {
+//         'Content-Type': 'application/x-www-form-urlencoded',
+//       },
+//     })
+//       .then((r) => r.json())
+//       .then((r) => {
+//         // console.log(r.access_token);
+//         res.locals.token = r.access_token;
+//         return next();
+//       });
+//   } catch (err) {
+//     return next({
+//       log: 'Express error handler caught error in controller.getAuthToken',
+//       status: 500,
+//       message: { err: `An error occurred in getAuthToken, ${err}` },
+//     });
+//   }
 
-  next();
-};
+//   next();
+// };
 
 controller.saveRec = async (req, res, next) => {
   const { book, author } = req.body;
