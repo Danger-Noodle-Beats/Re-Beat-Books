@@ -6,3 +6,108 @@
     height: 300px;
     width: 300px;
 }
+
+#rec-album-art {
+    height: 100px;
+    width: 100px;
+    margin: 10px;
+}
+
+#rec-album-details {
+    margin: -85px 0px 0px 150px;
+}
+
+#book-cover {
+height: 300px;
+width: 300px;
+}
+
+#logo-container {
+    display: flex;
+    height: 100px;
+}
+.Rec-List-Container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+}
+.recBox {
+    height: 170px;
+    width: 99%;
+    border: black 2px solid; 
+    margin-bottom: 10px;
+
+}
+
+.modal-music-container {
+    position: absolute;
+    background: #f6d23f;
+    /* width: 80%; */
+    height: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+        rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.modal-music-container button{
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 5px 20px;
+    margin: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: 'Antonio', sans-serif;
+}
+.modal-music-container button:active{
+    background-color: #c8baab;
+    border-radius: 30px;
+    box-shadow: #422800 2px 2px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 5px 20px;
+    margin: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: 'Antonio', sans-serif;
+}
+#recommend-title {
+    font-size: 20px;
+    margin: 5px;
+}
+
+#saved-recs-title {
+    font-size: 50px;
+    margin-top: -25px;
+    display: flex;
+    justify-content: center;
+}
+.save-modal-container {
+    background-color: #fbeee0;
+    border: 2px solid #422800;
+    border-radius: 30px;
+    box-shadow: #422800 4px 4px 0 0;
+    color: #422800;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 15px;
+    padding: 5px 20px;
+    margin: 20px;
+    line-height: 20px;
+    text-align: center;
+    font-family: 'Antonio', sans-serif;
+}
