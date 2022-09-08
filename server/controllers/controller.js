@@ -27,11 +27,11 @@ controller.getAuthToken = async (req, res, next) => {
         res.locals.token = r.access_token;
         return next();
       });
-  } catch (error) {
+  } catch (err) {
     return next({
       log: 'Express error handler caught error in controller.getAuthToken',
       status: 500,
-      message: { err: `An error occurred in getAuthToken, ${error}` },
+      message: { err: `An error occurred in getAuthToken, ${err}` },
     });
   }
 
@@ -69,10 +69,10 @@ controller.saveRec = async (req, res, next) => {
   }
 };
 
-controller.getAllRecs = async (req, res, next) => {
+controller.getAllRecs = (req, res, next) => {
   try {
-    await Rec.find({}, (err, recs) => {
-      console.log('all saved recs', recs);
+    Rec.find({}, (err, recs) => {
+      // console.log('all saved recs', recs);
       res.locals.allRecs = recs;
       return next();
     });
@@ -86,6 +86,7 @@ controller.getAllRecs = async (req, res, next) => {
 };
 
 controller.deleteRec = async (req, res, next) => {
+  console.log(req.params.albumName);
   const targetRec = req.params.albumName;
   try {
     await Rec.findOneAndDelete({ albumName: targetRec });

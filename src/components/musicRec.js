@@ -46,7 +46,9 @@ const MusicComponent = ({ book, author, album, subjects }) => {
       console.log('handleSave button not working');
     }
   };
-
+  const displaySaved = () => {
+    navigate('/savedRecs')
+  }
   const listArr = [];
 
   subjects.forEach((element, i) => {
@@ -83,8 +85,9 @@ const MusicComponent = ({ book, author, album, subjects }) => {
       <div className='save-recs'>
         {/* saves recs to database*/}
         <button id='save-recs' onClick={handleSave} className='submitButton'>
-          Save Recommendations
+          Save this album
         </button>
+        <button className='submitButton' onClick={displaySaved}>View All Saved Recommends</button>
       </div>
       <div className='web-player'>
         <iframe
