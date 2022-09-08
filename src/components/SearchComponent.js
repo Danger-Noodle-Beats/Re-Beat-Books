@@ -18,8 +18,8 @@ function SearchComponent() {
     setAuthor(e.target.value);
   };
   const handleViewAllRecs = () => {
-    navigate('/savedRecs')
-  }
+    navigate('/savedRecs');
+  };
   const handleSubmit = () => {
     if (!bookName || !author) {
       alert('Please enter both fields.');
@@ -31,11 +31,20 @@ function SearchComponent() {
     });
   };
 
-  useEffect(async () => {
-    const response = await fetch('/api/authToken/');
-    const authToken = await response.json();
-    console.log(authToken);
-    setToken(authToken);
+  // useEffect(async () => {
+  //   const response = await fetch('/api/authToken/');
+  //   const authToken = await response.json();
+  //   console.log(authToken);
+  //   setToken(authToken);
+  // }, []);
+
+  useEffect(() => {
+    const fetchToken = async () => {
+      const response = await fetch('/api/authToken/');
+      const authToken = await response.json();
+      setToken(authToken);
+    };
+    fetchToken();
   }, []);
 
   return (
@@ -68,8 +77,10 @@ function SearchComponent() {
           className='userInput'
         />
         <br />
-        <button onClick={handleViewAllRecs} className='submitButton'>View All Saved Recs</button>
-		<button onClick={handleSubmit} className='submitButton'>
+        <button onClick={handleViewAllRecs} className='submitButton'>
+          View All Saved Recs
+        </button>
+        <button onClick={handleSubmit} className='submitButton'>
           Submit
         </button>
       </div>

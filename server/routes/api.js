@@ -2,13 +2,13 @@ const express = require('express');
 const controller = require('../controllers/controller');
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  console.log('success in router.get');
-  // create: recent playlist: book name, author, song name
-  // update: favorite
-  // delete the created playlist
-  res.status(200).json('Success');
-});
+// router.get('/', (req, res) => {
+//   console.log('success in router.get');
+//   // create: recent playlist: book name, author, song name
+//   // update: favorite
+//   // delete the created playlist
+//   res.status(200).json('Success');
+// });
 
 router.get('/authToken', controller.getAuthToken, (req, res) => {
   // console.log(res.locals.token);

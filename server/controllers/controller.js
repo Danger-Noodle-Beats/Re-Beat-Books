@@ -86,6 +86,7 @@ controller.getAllRecs = (req, res, next) => {
 };
 
 controller.deleteRec = async (req, res, next) => {
+  console.log(req.params.albumName);
   const targetRec = req.params.albumName;
   try {
     await Rec.findOneAndDelete({ albumName: targetRec });
