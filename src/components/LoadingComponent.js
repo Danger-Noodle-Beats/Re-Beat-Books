@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import MusicComponent from './musicRec';
 import { useState } from 'react';
-//const token = 'BQCY3iCemJ3XgdjAwJaFwVLZXQBQRczK6mAe9QrZWmc3WDLhHLHOZDHeGjmr4WuFwmyrKXT-9wDIr9gfylQLZwmhyp5PpZhbxzft-ed-fUA0VmjQYD0g-3VnGAKcfJ9yBALl-EPggufyGJ479Jd74MrLaM1dm__weH1wTPWmhnX8J0g';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useLocation } from 'react-router-dom';
 
@@ -76,6 +75,7 @@ const LoadingComponent = () => {
     '“The more that you read, the more things you will know. The more that you learn, the more places you’ll go.” - Dr. Seuss',
     '“Fill your house with stacks of books, in all the crannies and all the nooks.” - Dr. Seuss',
   ];
+
   function randomQuote() {
     const random = Math.floor(Math.random() * quotes.length);
     return quotes[random];
