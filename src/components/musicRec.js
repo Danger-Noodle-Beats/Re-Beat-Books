@@ -10,10 +10,6 @@ const MusicComponent = ({ book, author, album, subjects }) => {
   const [counter, setCount] = useState(0);
   const [currentAlbum, setAlbum] = useState(album[0]);
   const navigate = useNavigate();
-  useEffect(async () => {
-    // const response = await fetch("https://open.spotify.com/embed-podcast/iframe-api/v1")
-    // console.log(response)
-  }, []);
 
   function handleClick(e) {
     navigate('/');
@@ -42,6 +38,7 @@ const MusicComponent = ({ book, author, album, subjects }) => {
         },
       });
       const json = await response.json();
+      alert('Album has been saved')
     } catch (error) {
       console.log('handleSave button not working');
     }

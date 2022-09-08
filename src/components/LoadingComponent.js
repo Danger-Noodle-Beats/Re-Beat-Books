@@ -15,100 +15,54 @@ const LoadingComponent = () => {
   const [loading, setLoading] = useState(true);
   const [tracks, setTracks] = useState(null);
   const [subjects, setSubjects] = useState(null);
-
   // getting state property from useLocation
   const { state } = useLocation();
   // setting book and author from state properties
   const { book, author, token } = state; //state.book
-  // const fetchTracks = async ()=> {
-  //     const response = await fetch('https://631630f233e540a6d38f0ae4.mockapi.io/api/tracks');
-  //     setTracks(await response.json);
-  //     console.log(tracks);
-  // }
 
-  //component did mounted
   useEffect(async () => {
-    await fetchTracks(`${book} ${author}`)
-      .then(() => {
-        setTimeout(() => {
-          console.log('delayed for two seconds');
-          setLoading(false);
-          // after loaded, setting loading variable to be false
-          console.log('logging passed state', book, author, state);
-        }, 2000);
-      })
-      .catch((err) => {
-        if (err) console.log(err);
-      });
-    // .then(async()=>{
-    //     const tracksArr = await fetchTracks(cover.title);
-    //     setLoading(false)
-    // })
+    const resultsFromBooks = await fetchGutenAPI(`${book} ${author}`);
+    await fetchTracks(resultsFromBooks).then(() => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
+    });
   }, []);
 
-  // const fetchCover = async (Search)=> {
-
-  //     let coverSearch = 'jack london'
-  //     const response = await fetch(`https://gutendex.com/books?search=${coverSearch}`);
-  //     const parsed = await response.json();
-  //     const title = parsed.results[0].title;
-  //     const url = parsed.results[0].formats['image/jpeg']
-  //     const bookInfo = {
-  //         title,
-  //         url
-  //     }
-  //     setCover(bookInfo);
-
-  // }
-  const fetchTracks = async (searchString) => {
-    // const token =
-    //   'BQB-vygWiUKr2gBy_OJip6h6XKy4lin2odWsaRZ7-FGerg_KtNUY8dvtQc8Qo5tPmsHC01DTJp7shEUoprWGnEaSjJGuYhhBkXXj3dDN1_6S-5g2Dmo';
-
-    let resultFromBooks = '';
-    console.log('Trying to get book: ', searchString);
-    const searchUrl = `https://gutendex.com/books?search=${searchString}`; // fetching guten API
-    console.log('searchUrl: ', searchUrl);
-    const bookResponse = await fetch(searchUrl); // setting data into bookResponse
-    const bookParsed = await bookResponse.json();
-    const listOfSubjects = [...bookParsed.results[0].subjects];
-    console.log('List of Subjects: ', listOfSubjects);
-    setSubjects(listOfSubjects);
-    listOfSubjects.forEach((el) => {
-      resultFromBooks += el.split(' ')[0] + ' '; // 'Thermodynamics Statistical mechanics Thermodynamics'
+  const fetchGutenAPI = async (searchString) => {
+    const body = JSON.stringify({
+      searchString,
     });
-    console.log('Search string for Spotify: ', resultFromBooks);
-    const spotifySearchUrl = `https://api.spotify.com/v1/search?type=album&q=${resultFromBooks}`;
-    const config = {
+    const response = await fetch('/api/getGutenAPI', {
+      method: 'POST',
+      body: body,
       headers: {
-        Authorization: 'Bearer ' + token,
         'Content-Type': 'application/json',
       },
-    };
-    const spotifyResponse = await fetch(spotifySearchUrl, config);
-    console.log('Spotify resonse: ', spotifyResponse);
-    const spotifyParsed = await spotifyResponse.json();
-    // assigning responses from spotifyAPI to spotifyParse veriable
-    const albums = [];
-    for (let i = 0; i < spotifyParsed.albums.items.length; i++) {
-      const artistName = '' + spotifyParsed.albums.items[i].artists[0].name;
-      const albumName = '' + '' + spotifyParsed.albums.items[i].name;
-      const albumURI = '' + '' + spotifyParsed.albums.items[i].uri.slice(14);
-      const albumArtURL = '' + spotifyParsed.albums.items[i].images[0].url;
-      const spotifyURL =
-        '' + spotifyParsed.albums.items[i].external_urls.spotify;
-      const albumInfo = {
-        artistName,
-        albumName,
-        albumArtURL,
-        spotifyURL,
-        albumURI,
-      };
-      albums.push(albumInfo);
-    }
-
-    console.log('albumInfo: ', albums);
-    setTracks(albums);
-    return albums;
+    });
+    const data = await response.json();
+    console.log('data in fetchGutenAPI', data);
+    setSubjects(data);
+    let resultFromBooks = '';
+    data.forEach((el) => {
+      resultFromBooks += el.split(' ')[0] + ' '; // 'Thermodynamics Statistical mechanics Thermodynamics'
+    });
+    return resultFromBooks;
+  };
+  const fetchTracks = async (resultFromBooks) => {
+    console.log('Search string for Spotify: ', resultFromBooks);
+    const response = await fetch('/api/getSpotAPI', {
+      method: 'POST',
+      body: JSON.stringify({
+        resultFromBooks: resultFromBooks,
+        token: token,
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    const album = await response.json();
+    setTracks(album);
   };
   const quotes = [
     '“A reader lives a thousand lives before he dies...The man who never reads lives only one.” - George R.R.Martin',
