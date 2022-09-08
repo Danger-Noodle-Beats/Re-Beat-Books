@@ -6,7 +6,6 @@
 	gap: 0px 0px;
 	grid-auto-flow: row;
 	text-align: center;
-
 	grid-template-areas:
 		'dope-beats dope-beats dope-beats dope-beats'
 		'subjects-list subjects-list subjects-list subjects-list'
@@ -14,7 +13,7 @@
 		'album-art album-art album-art album-art'
 		'album-art album-art album-art album-art'
 		'artist-info artist-info album-info album-info'
-		'next-album next-album search-again search-again'
+		'save-recs viewall-recs viewall-recs next-album'
 		'web-player web-player web-player web-player';
 }
 
@@ -35,6 +34,7 @@
 	padding-right: 2vw;
 	display: flex;
 	justify-content: center;
+	/* margin-right: 20vw; */
 }
 
 .album-info {
@@ -62,11 +62,17 @@
 	display: flex;
 	justify-content: center;
 }
-.save-recs {
-	grid-area: save-recs;
+.viewall-recs {
+	grid-area: viewall-recs;
+	padding-right: 2vw;
 	display: flex;
 	justify-content: center;
-	/* border: solid black; */
+}
+.save-recs {
+	grid-area: save-recs;
+	padding-right: 2vw;
+	display: flex;
+	justify-content: center;
 }
 
 .web-player {
@@ -119,3 +125,7 @@ li {
 	margin-left: 10vw;
 	margin-right: 0vw;
 }
+/* .music-info {
+	display: flex;
+	width: 100%;
+} */
