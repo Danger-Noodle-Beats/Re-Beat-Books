@@ -30,7 +30,7 @@ router.get('/savedRecs', controller.getAllRecs, (req, res) => {
   console.log('in saved recs', res.locals.allRecs);
   res.status(200).json(res.locals.allRecs);
 });
-router.delete('/deleteRec/:albumName', controller.deleteRec, (req, res) => {
+router.delete('/deleteRec/:_id', controller.deleteRec, (req, res) => {
   res.sendStatus(200);
 });
 
