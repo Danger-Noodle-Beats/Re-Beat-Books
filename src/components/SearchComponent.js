@@ -31,13 +31,6 @@ function SearchComponent() {
     });
   };
 
-  // useEffect(async () => {
-  //   const response = await fetch('/api/authToken/');
-  //   const authToken = await response.json();
-  //   console.log(authToken);
-  //   setToken(authToken);
-  // }, []);
-
   useEffect(() => {
     const fetchToken = async () => {
       const response = await fetch('/api/authToken/');
