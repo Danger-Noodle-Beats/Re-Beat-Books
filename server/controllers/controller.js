@@ -5,6 +5,7 @@ const models = require('../models/model');
 const { Rec } = models;
 
 const controller = {};
+
 let tokenMadeAt;
 let token;
 controller.getAuthToken = async (req, res, next) => {
@@ -107,6 +108,7 @@ controller.getSpotAPI = async (req, res, next) => {
     });
   }
 };
+
 controller.saveRec = async (req, res, next) => {
   const { book, author } = req.body;
   const album = req.body.currentAlbum;
